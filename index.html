@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Chat Room</title>
 <style>
 body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
+  background-color: black;
+  color: white;
 }
 
 .chat-room {
@@ -42,6 +43,27 @@ body {
   float: left;
   width: 400px;
 }
+
+.chat-room .input {
+  width: 100%;
+  height: 20px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.chat-room .input:hover {
+  background-color: #eee;
+}
+
+.chat-room .send-button {
+  width: 100px;
+  height: 20px;
+  background-color: #000;
+  color: white;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -60,9 +82,9 @@ body {
       <div class="text">I'm doing well, thanks for asking.</div>
     </li>
   </ul>
+  <input type="text" class="input" id="message-text" placeholder="Enter your message...">
+  <button type="button" class="send-button" id="send-message">Send</button>
 </div>
-<input type="text" id="message-text" placeholder="Enter your message...">
-<button type="button" id="send-message">Send</button>
 <script>
 var chatRoom = {
   messages: [],
