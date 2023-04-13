@@ -1,85 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tic-Tac-Toe</title>
+<title>Chat Room</title>
 <style>
 body {
-  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
-.container {
-  width: 50%;
-  margin: 0 auto;
-}
-
-.board {
-  width: 200px;
-  height: 200px;
+.chat-room {
+  width: 500px;
+  height: 500px;
   border: 1px solid black;
 }
 
-.square {
-  width: 50px;
-  height: 50px;
-  background-color: #ffffff;
+.chat-room .messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-room .message {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
   cursor: pointer;
 }
 
-.square:hover {
-  background-color: #cccccc;
+.chat-room .message:hover {
+  background-color: #eee;
 }
 
-.x {
-  background-color: red;
+.chat-room .message .name {
+  float: left;
+  width: 100px;
+  text-align: right;
 }
 
-.o {
-  background-color: blue;
-}
-
-.winner {
-  font-size: 24px;
-  font-weight: bold;
-  color: red;
+.chat-room .message .text {
+  float: left;
+  width: 400px;
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="board">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-  </div>
-  <div class="board">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-  </div>
-  <div class="board">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-  </div>
-  <div>
-    <button type="button" class="x">X</button>
-    <button type="button" class="o">O</button>
-  </div>
+<div class="chat-room">
+  <ul class="messages">
+    <li class="message">
+      <div class="name">Bard</div>
+      <div class="text">Hello, world!</div>
+    </li>
+    <li class="message">
+      <div class="name">User</div>
+      <div class="text">How are you?</div>
+    </li>
+    <li class="message">
+      <div class="name">Bard</div>
+      <div class="text">I'm doing well, thanks for asking.</div>
+    </li>
+  </ul>
 </div>
+<input type="text" id="message-text" placeholder="Enter your message...">
+<button type="button" id="send-message">Send</button>
+<script>
+var chatRoom = {
+  messages: [],
+  addMessage: function(message) {
+    this.messages.push(message);
+    var li = document.createElement('li');
+    li.className = 'message';
+    var name = document.createElement('div');
+    name.className = 'name';
+    name.innerHTML = message.name;
+    var text = document.createElement('div');
+    text.className = 'text';
+    text.innerHTML = message.text;
+    li.appendChild(name);
+    li.appendChild(text);
+    document.getElementById('messages').appendChild(li);
+  },
+  sendMessage: function() {
+    var message = document.getElementById('message-text').value;
+    if (message.length > 0) {
+      this.addMessage({
+        name: 'Bard',
+        text: message
+      });
+      document.getElementById('message-text').value = '';
+    }
+  }
+};
+
+document.getElementById('send-message').addEventListener('click', chatRoom.sendMessage);
+</script>
 </body>
 </html>
